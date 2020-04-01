@@ -99,25 +99,6 @@ public class NShape {
     }
 
     /**
-     * Vrací bod, který je neblíže od počátku.
-     * @return bod nejblíže od počátku.
-     */
-    public Point nearestFromEachOther(Point) {
-        double min = Double.MAX_VALUE;
-        Point nearest = null;
-
-        for (Point p: this.points) {
-            double distance = p.distance();
-            if (distance < min) {
-                min = distance;
-                nearest = p;
-            }
-        }
-
-        return nearest;
-    }
-
-    /**
      * Vrací bod, který je nejdále od počátku.
      * @return bod nejdále od počátku.
      */
