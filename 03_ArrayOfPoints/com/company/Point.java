@@ -1,5 +1,9 @@
 package com.company;
 
+/**
+ * Třída bodu (souřadnice, vzdálenost od jiných bodů).
+ * @author  Bruno Pfohl
+ */
 public class Point {
     private double x;
     private double y;
