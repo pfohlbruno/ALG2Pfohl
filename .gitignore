@@ -1,0 +1,10 @@
+
+06_Bank/.idea/description.html
+06_Bank/.idea/encodings.xml
+*.iml
+*.xml
+06_Bank/out/production/06_Bank/app/Main.class
+06_Bank/out/production/06_Bank/bank/Account.class
+06_Bank/out/production/06_Bank/bank/Client.class
+06_Bank/out/production/06_Bank/bank/Company.class
+06_Bank/out/production/06_Bank/bank/Person.class
