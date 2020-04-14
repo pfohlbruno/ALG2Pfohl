@@ -1,8 +1,11 @@
 package app;
 
+import comparing.Comparing;
 import shapes.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -41,6 +44,11 @@ public class Main {
                 case "h":
                     System.out.println(getShapeWithLowestPerimeter(geoms));
                     break;
+                case "i":
+                    Shape[] sorted = geoms.toArray(new Shape[0]);
+                    Comparing.sort(sorted);
+                    Comparing.print(sorted);
+                    break;
                 default:
                     run = false;
             }
@@ -58,6 +66,7 @@ public class Main {
             "f) Vypsat obrazce\n" +
             "g) Max obvod\n" +
             "h) Min obvod\n" +
+            "i) Vypsat setřízené podle plochy\n" +
             "cokoliv jiného => konec programu"
         );
     }

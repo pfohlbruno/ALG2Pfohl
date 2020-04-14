@@ -1,5 +1,7 @@
 package shapes;
 
+import comparing.CompareInterface;
+
 /**
  * Třída reprezentující obdélník, který je definován 2 stranami.
  * @author Bruno Pfohl

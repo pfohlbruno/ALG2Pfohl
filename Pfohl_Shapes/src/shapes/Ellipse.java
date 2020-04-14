@@ -1,5 +1,7 @@
 package shapes;
 
+import comparing.CompareInterface;
+
 /**
  * Třída reprezentující elipsu, která je definována délkou hlavní a vedlejší poloosy.
  * @author Bruno Pfohl
@@ -35,6 +37,6 @@ public class Ellipse extends Shape {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(":{ Hlavní poloosa: %.2f; Vedlejší poloosa: %.2f; Obvod: %.2f; Obsah: %.2f }", getShapeName(), this.a, this.b, getPerimeter(), getArea());
+        return super.toString() + String.format(":{ Hlavní poloosa: %.2f; Vedlejší poloosa: %.2f; Obvod: %.2f; Obsah: %.2f }", this.a, this.b, getPerimeter(), getArea());
     }
 }

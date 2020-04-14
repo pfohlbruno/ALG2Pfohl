@@ -1,5 +1,7 @@
 package shapes;
 
+import comparing.CompareInterface;
+
 /**
  * Třída reprezentující kruh, který je elipsou se stejnou délkou hlavní a vedlejší poloosy.
  * @author Bruno Pfohl
