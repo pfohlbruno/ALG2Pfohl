@@ -20,6 +20,6 @@ public class Circle  extends Ellipse{
 
     @Override
     public String toString() {
-        return String.format("Kruh :{ Poloměr: %.2f; Obvod: %.2f; Obsah: %.2f }", getRadius(), getPerimeter(), getArea());
+        return super.toString() + String.format(":{ Poloměr: %.2f; Obvod: %.2f; Obsah: %.2f }", getRadius(), getPerimeter(), getArea());
     }
 }

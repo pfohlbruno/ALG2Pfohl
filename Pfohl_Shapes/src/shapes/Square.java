@@ -15,6 +15,6 @@ public class Square extends Rectangle {
 
     @Override
     public String toString() {
-        return String.format("Délka strany :{ Hlavní poloosa: %.2f; Obvod: %.2f; Obsah: %.2f }", this.getSideLength(), getPerimeter(), getArea());
+        return String.format("%s :{ Délka strany: %.2f; Obvod: %.2f; Obsah: %.2f }", getShapeName(), this.getSideLength(), getPerimeter(), getArea());
     }
 }

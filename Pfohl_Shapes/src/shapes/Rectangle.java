@@ -34,6 +34,6 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return String.format("Obdélník :{ Šířka: %.2f; Výška: %.2f; Obvod: %.2f; Obsah: %.2f }", this.width, this.height, getPerimeter(), getArea());
+        return String.format("%s :{ Šířka: %.2f; Výška: %.2f; Obvod: %.2f; Obsah: %.2f }", getShapeName(), this.width, this.height, getPerimeter(), getArea());
     }
 }

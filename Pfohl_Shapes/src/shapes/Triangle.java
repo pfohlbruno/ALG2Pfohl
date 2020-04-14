@@ -41,6 +41,6 @@ public class Triangle extends Shape {
 
     @Override
     public String toString() {
-        return String.format("1. strana :{ 2. strana: %.2f; 3.strana: %.2f; Obvod: %.2f; Obsah: %.2f }", this.a, this.b, this.c , getPerimeter(), getArea());
+        return String.format("%s :{ 1.strana: %.2f; 2. strana: %.2f; 3.strana: %.2f; Obvod: %.2f; Obsah: %.2f }", getShapeName(), this.a, this.b, this.c , getPerimeter(), getArea());
     }
 }
