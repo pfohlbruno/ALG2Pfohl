@@ -1,4 +1,6 @@
-package com.company;
+package comparingfruits;
+
+import comparingstudents.mycomparing.MyComparing;
 
 /**
  *

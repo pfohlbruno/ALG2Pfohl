@@ -1,10 +1,12 @@
-package com.company;
+package comparingfruits;
+
+import comparingstudents.mycomparing.CompareInterface;
 
 /**
  * Třída reprezentující jablko.
  * @author Bruno Pfohl
  */
-public class Apple implements CompareInterface{
+public class Apple implements CompareInterface {
     private String name;
     private int sweetness;
 
