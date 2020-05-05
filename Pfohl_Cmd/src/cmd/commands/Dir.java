@@ -3,18 +3,41 @@ package cmd.commands;
 import cmd.code.CmdInterface;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Dir extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {
-        File[] files;
+        File[] files = null;
         if (this.params.length == 1) {
             files = actualDir.listFiles();
+        }
+        else if(this.params.length == 2) {
+            files = actualDir.listFiles();
+            Arrays.sort(files);
+        }
+        else if (this.params.length == 3) {
+            String switcher = this.params[1];
+            String param = this.params[2];
+
+            switch(switcher) {
+                case "-e":
+                    files = actualDir.listFiles((File pathname) -> pathname.getName().endsWith(param));
+                    break;
+                case "-s":
+                    long size = Long.parseLong(param);
+                    files = actualDir.listFiles((File pathname) -> pathname.getTotalSpace() > size);
+                    break;
+            }
+        }
+
+        if (files != null) {
             return dirToString(files);
         }
 
-        return "";
+        return getDoc();
     }
 
     public static String getDoc() {
