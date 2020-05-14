@@ -122,3 +122,17 @@ Pfohl_Cmd/out/production/Pfohl_cmd/cmd/code/CmdUI.class
 Pfohl_Cmd/out/production/Pfohl_cmd/cmd/code/CmdInterface.class
 Pfohl_Cmd/out/production/Pfohl_cmd/cmd/app/CmdEditor.class
 Pfohl_Hurricane/.idea/description.html
+Pfohl_ALG2_sem_Travelly/.idea/description.html
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/dataprovider/BookingProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/dataprovider/filters/IdFilter.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/dataprovider/HotelProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/dataprovider/OfferProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/dataprovider/ProviderBase.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/entities/Booking.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/entities/EntityBase.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/entities/Hotel.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/entities/Offer.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/enums/ServiceTypeEnum.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/enums/TransportTypeEnum.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/Main.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/utils/CsvReader.class
