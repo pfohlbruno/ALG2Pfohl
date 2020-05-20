@@ -1,5 +1,8 @@
 package app.entities;
+import app.dataprovider.OfferProvider;
 import com.opencsv.bean.CsvBindByName;
+
+import java.util.List;
 
 /**
  * Třída reprezentující hotel pro ubytování.
@@ -67,5 +70,9 @@ public class Hotel extends EntityBase {
      */
     public int getStars() {
         return stars;
+    }
+
+    public List<Offer> getOffers(OfferProvider offerProvider) {
+        return offerProvider.getOffersForHotelId(this.id);
     }
 }

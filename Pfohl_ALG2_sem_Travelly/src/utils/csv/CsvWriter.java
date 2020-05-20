@@ -1,4 +1,4 @@
-package utils;
+package utils.csv;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;

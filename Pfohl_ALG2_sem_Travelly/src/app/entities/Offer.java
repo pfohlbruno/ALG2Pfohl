@@ -3,6 +3,11 @@ package app.entities;
 import app.enums.ServiceTypeEnum;
 import app.enums.TransportTypeEnum;
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
+import com.opencsv.bean.CsvCustomBindByPosition;
+import com.opencsv.bean.CsvDate;
+import utils.csv.converters.ServiceTypeEnumConverter;
+import utils.csv.converters.TransportTypeEnumConverter;
 
 import java.util.Date;
 
@@ -13,21 +18,33 @@ import java.util.Date;
 public class Offer extends EntityBase
 {
     @CsvBindByName
-    private int hotelId;
+    private String hotelId;
+
     @CsvBindByName
     private int price;
+
     @CsvBindByName
+    @CsvDate(value = "dd-MM-yyyy")
     private Date from;
+
     @CsvBindByName
+    @CsvDate(value = "dd-MM-yyyy")
     private Date to;
-    @CsvBindByName
+
+    @CsvCustomBindByName(column = "transportType", converter = TransportTypeEnumConverter.class)
     private TransportTypeEnum transportType;
-    @CsvBindByName
+
+    @CsvCustomBindByName(column = "serviceType", converter = ServiceTypeEnumConverter.class)
     private ServiceTypeEnum serviceType;
+
     @CsvBindByName
     private int capacity;
+
     @CsvBindByName
     private int usedCapacity;
+
+    // Název hotelu. Není uchováván v CSV souboru.
+    private String hotelName;
 
     /**
      * Prázdný konstruktor pro CSV binder.
@@ -36,7 +53,7 @@ public class Offer extends EntityBase
 
     }
 
-    public Offer(String id, int hotelId, int price, Date from, Date to, TransportTypeEnum transportType, ServiceTypeEnum serviceType, int capacity, int usedCapacity) {
+    public Offer(String id, String hotelId, int price, Date from, Date to, TransportTypeEnum transportType, ServiceTypeEnum serviceType, int capacity, int usedCapacity) {
         super(id);
         this.hotelId = hotelId;
         this.price = price;
@@ -51,7 +68,7 @@ public class Offer extends EntityBase
     /**
      * Vrací unikátní identifikátor hotelu.
      */
-    public int getHotelId() {
+    public String getHotelId() {
         return hotelId;
     }
 
@@ -104,14 +121,37 @@ public class Offer extends EntityBase
         return usedCapacity;
     }
 
-    public void setUsedCapacity(int usedCapacity) {
-        this.usedCapacity = usedCapacity;
+
+    public void useCapacity(int count) throws Exception{
+        // Zkontroluji, jestli je dostatek míst.
+        if (count > getAvailableCapacity()) {
+            throw new Exception(String.format(
+                    "Došlo k pokusu o využití více volných míst nabídky (Offer:%s), která jich však nemá dostatek.",
+                    this.id
+            ));
+        }
+
+        // Provedu snížení dostupných míst.
+        this.usedCapacity += count;
+    }
+
+    public void freeCapacity(int count) throws Exception{
+        // Zkontroluji, jestli je možno uvolnit požadovaný počet míst.
+        if (count > this.usedCapacity) {
+            throw new Exception(String.format(
+                    "Došlo k pokusu o uvolnění míst u nabídky (Offer:%s). Počet aktuálně zabraných míst je ale nižší.",
+                    this.id
+            ));
+        }
+
+        // Provedu navýšení dostupných míst.
+        this.usedCapacity -= count;
     }
 
     /**
      * Vrací, kolik volných míst zbývá k zarezervování.
      */
-    public int availableCapacity() {
-        return usedCapacity;
+    public int getAvailableCapacity() {
+        return this.capacity - this.usedCapacity;
     }
 }

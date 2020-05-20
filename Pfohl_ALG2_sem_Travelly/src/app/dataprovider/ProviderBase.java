@@ -3,14 +3,16 @@ package app.dataprovider;
 import app.entities.EntityBase;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import utils.CsvReader;
-import utils.CsvWriter;
+import org.apache.commons.beanutils.converters.DateConverter;
+import utils.csv.CsvReader;
+import utils.csv.CsvWriter;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
- * Bázová třída provideru dat.
+ * Bázová třída provideru dat (z csv souboru).
  * @param <T> Generický parametr, který určuje s kterým datovým objektem tato třída pracuje.
  */
 public abstract class ProviderBase<T> {
@@ -18,6 +20,8 @@ public abstract class ProviderBase<T> {
     private Class<T> genericType;
 
     public ProviderBase(final Class<T> type) throws IOException {
+        this.genericType = type;
+        registerDateConverter();
         load();
     }
 
@@ -49,6 +53,14 @@ public abstract class ProviderBase<T> {
                 .get();
     }
 
+    private static void registerDateConverter() {
+        DateConverter dc = new DateConverter();
+        dc.setUseLocaleFormat(true);
+        dc.setPatterns(new String[] { "dd-MM-yyyy", "dd-MM-yyyy HH:mm:ss" });
+        org.apache.commons.beanutils.ConvertUtils.register(dc, Date.class);
+    }
+
+
     /**
      * Vrací všechny záznamy.
      */
@@ -56,5 +68,9 @@ public abstract class ProviderBase<T> {
         return this.data;
     }
 
+    /**
+     * Poskytuje cestu k CSV souboru, ve kterém jsou uložena data.
+     * @return Cesta k CSV souboru na disku.
+     */
     public abstract String getSourcePath();
 }

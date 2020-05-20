@@ -1,4 +1,4 @@
 id;name;place;imgPath;stars
-1;Hotel 1;Cesko;tady;4
-2;Hotel 2;Slovensko;jinde;2
-3;Hotel 3;Bulharsko;jinde;1
+1;Hotel 1;Cesko;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;4
+2;Hotel 2;Slovensko;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;2
+3;Hotel 3;Bulharsko;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;1
