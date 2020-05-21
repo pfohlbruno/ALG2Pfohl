@@ -1,4 +1,4 @@
-package app.dataprovider;
+package app.data.providers;
 
 import app.comparators.HotelStarsComparator;
 import app.entities.Hotel;

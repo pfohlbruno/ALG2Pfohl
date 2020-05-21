@@ -1,4 +1,4 @@
-package app.dataprovider;
+package app.data.providers;
 
 import app.entities.EntityBase;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;

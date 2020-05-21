@@ -1,14 +1,12 @@
 package ui.renderers.jlist;
 
-import app.entities.Hotel;
 import app.entities.Offer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 
-public class OfferRenderer extends JPanel implements ListCellRenderer<Offer> {
-    private JLabel lblName = new JLabel();
+public class OfferRenderer extends CellRendererBase<Offer> {
     private JLabel lblPrice = new JLabel();
     private JLabel lblDate = new JLabel();
     private JLabel lblTransportType = new JLabel();
@@ -16,23 +14,19 @@ public class OfferRenderer extends JPanel implements ListCellRenderer<Offer> {
     private JLabel lblAvailableCapacity = new JLabel();
 
     public OfferRenderer() {
-        setLayout(new BorderLayout(5, 5));
-
-        JPanel panelText = new JPanel(new GridLayout(0, 1));
-        panelText.add(this.lblName);
-        panelText.add(this.lblPrice);
-        panelText.add(this.lblDate);
-        panelText.add(this.lblTransportType);
-        panelText.add(this.lblServiceType);
-        panelText.add(this.lblAvailableCapacity);
-        add(panelText, BorderLayout.CENTER);
+        addTextPanelItem(this.lblPrice);
+        addTextPanelItem(this.lblDate);
+        addTextPanelItem(this.lblTransportType);
+        addTextPanelItem(this.lblServiceType);
+        addTextPanelItem(this.lblAvailableCapacity);
     }
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Offer> list, Offer offer, int index, boolean isSelected, boolean cellHasFocus) {
+        super.getListCellRendererComponent(list, offer, index, isSelected, cellHasFocus);
+
         // Název
-        this.lblName.setText("Nabídka");
-        this.lblName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+        setHeading("Nabídka");
 
         // Cena
         this.lblPrice.setText("Cena: " +  offer.getPrice());
@@ -49,19 +43,6 @@ public class OfferRenderer extends JPanel implements ListCellRenderer<Offer> {
 
         // Počet volných míst
         this.lblAvailableCapacity.setText("Počet volných míst: " + offer.getAvailableCapacity());
-
-        // set Opaque to change background color of JLabel
-        this.lblName.setOpaque(true);
-
-
-        // Pokud je položka zvolená, zvýrazním ji.
-        if (isSelected) {
-            this.lblName.setBackground(list.getSelectionBackground());
-            setBackground(list.getSelectionBackground());
-        } else {
-            this.lblName.setBackground(list.getBackground());
-            setBackground(list.getBackground());
-        }
 
         return this;
     }

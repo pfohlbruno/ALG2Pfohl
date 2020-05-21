@@ -1,58 +1,46 @@
 package ui.renderers.jlist;
 
 import app.entities.Hotel;
+import ui.models.HotelModel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class HotelRenderer extends JPanel implements ListCellRenderer<Hotel> {
-    private JLabel lblIcon = new JLabel();
-    private JLabel lblName = new JLabel();
+public class HotelRenderer extends CellRendererBase<HotelModel> {
+    /**
+     * Hodnocení hotelu.
+     */
     private JLabel lblStars = new JLabel();
 
-    public HotelRenderer() {
-        setLayout(new BorderLayout(5, 5));
+    /**
+     * Umístění hotelu.
+     */
+    private JLabel lblPlace = new JLabel();
 
-        JPanel panelText = new JPanel(new GridLayout(0, 1));
-        panelText.add(this.lblName);
-        panelText.add(this.lblStars);
-        add(lblIcon, BorderLayout.WEST);
-        add(panelText, BorderLayout.CENTER);
+
+    /**
+     * Konstruktor pro vytvoření instance rendereru (volá bázový konstruktor a povoluje obrázek).
+     */
+    public HotelRenderer() {
+        super(true);
+
+        addTextPanelItem(this.lblStars);
+        addTextPanelItem(this.lblPlace);
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends Hotel> list,  Hotel hotel, int index, boolean isSelected, boolean cellHasFocus) {
-        // Obrázek hotelu.
-
-        ImageIcon icon = new ImageIcon(new ImageIcon(hotel.getImgPath()).getImage().getScaledInstance(-1, list.getFixedCellHeight(), Image.SCALE_DEFAULT));
-
-        this.lblIcon.setIcon(icon);
+    public Component getListCellRendererComponent(JList<? extends HotelModel> list, HotelModel hotel, int index, boolean isSelected, boolean cellHasFocus) {
+        super.getListCellRendererComponent(list, hotel, index, isSelected, cellHasFocus);
 
         // Název hotelu.
-        this.lblName.setText(hotel.getName());
-        this.lblName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+        setHeading(hotel.getName());
+
+        // Místo pobytu.
+        this.lblPlace.setText(hotel.getLocation());
 
         // Hodnocení hotelu.
-        this.lblStars.setText("Hvězdy: " +  hotel.getStars());
-        this.setForeground(Color.decode("#d4af37"));
-
-        // set Opaque to change background color of JLabel
-        this.lblName.setOpaque(true);
-        this.lblStars.setOpaque(true);
-        this.lblIcon.setOpaque(true);
-
-        // Pokud je položka zvolená, zvýrazním ji.
-        if (isSelected) {
-            this.lblName.setBackground(list.getSelectionBackground());
-            this.lblStars.setBackground(list.getSelectionBackground());
-            this.lblIcon.setBackground(list.getSelectionBackground());
-            setBackground(list.getSelectionBackground());
-        } else {
-            this.lblName.setBackground(list.getBackground());
-            this.lblStars.setBackground(list.getBackground());
-            this.lblIcon.setBackground(list.getBackground());
-            setBackground(list.getBackground());
-        }
+        this.lblStars.setText(new String(new char[hotel.getStars()]).replace("\0", "⋆"));
+        this.lblStars.setForeground(Color.decode("#d4af37"));
 
         return this;
     }

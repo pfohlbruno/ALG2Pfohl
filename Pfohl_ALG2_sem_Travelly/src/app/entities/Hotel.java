@@ -1,5 +1,5 @@
 package app.entities;
-import app.dataprovider.OfferProvider;
+import app.data.providers.OfferProvider;
 import com.opencsv.bean.CsvBindByName;
 
 import java.util.List;
@@ -11,10 +11,13 @@ import java.util.List;
 public class Hotel extends EntityBase {
     @CsvBindByName
     private String name;
-    @CsvBindByName
-    private String place;
+
     @CsvBindByName
     private String imgPath;
+
+    @CsvBindByName
+    private String place;
+
     @CsvBindByName
     private int stars;
 
@@ -48,28 +51,28 @@ public class Hotel extends EntityBase {
      * Vrací název hotelu.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * Vrací místo, kde se hotel nachází.
      */
     public String getPlace() {
-        return place;
-    }
-
-    /**
-     * Vrací cestu k obrázku hotelu.
-     */
-    public String getImgPath() {
-        return imgPath;
+        return this.place;
     }
 
     /**
      * Vrací počet hvězdiček hotelu.
      */
     public int getStars() {
-        return stars;
+        return this.stars;
+    }
+
+    /**
+     * Vrací cestu k obrázku hotelu na disku.
+     */
+    public String getImgPath() {
+        return this.imgPath;
     }
 
     public List<Offer> getOffers(OfferProvider offerProvider) {

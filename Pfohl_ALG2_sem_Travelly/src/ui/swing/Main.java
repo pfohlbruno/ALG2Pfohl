@@ -1,7 +1,7 @@
 package ui.swing;
 
-import app.dataprovider.HotelProvider;
-import app.dataprovider.OfferProvider;
+import app.data.providers.HotelProvider;
+import app.data.providers.OfferProvider;
 import app.entities.Hotel;
 import app.entities.Offer;
 import ui.renderers.jlist.HotelRenderer;
@@ -55,7 +55,7 @@ public class Main extends JFrame{
 
         // Nabídky zájezdů ...
 
-        this.lbOffers.setFixedCellHeight(100);
+        this.lbOffers.setFixedCellHeight(150);
 
         this.pack();
 
