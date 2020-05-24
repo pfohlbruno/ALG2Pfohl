@@ -1,6 +1,5 @@
 package ui.renderers.jlist;
 
-import app.entities.Offer;
 import ui.models.OfferModel;
 
 import javax.swing.*;
@@ -13,6 +12,7 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
     private JLabel lblTransportType = new JLabel();
     private JLabel lblServiceType = new JLabel();
     private JLabel lblAvailableCapacity = new JLabel();
+    private JButton btnBook = new JButton();
 
     public OfferRenderer() {
         addTextPanelItem(this.lblPrice);
@@ -20,6 +20,9 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
         addTextPanelItem(this.lblTransportType);
         addTextPanelItem(this.lblServiceType);
         addTextPanelItem(this.lblAvailableCapacity);
+
+        this.btnBook.setText("Rezervovat");
+        add(this.btnBook, BorderLayout.EAST);
     }
 
     @Override
@@ -44,6 +47,10 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
 
         // Počet volných míst
         this.lblAvailableCapacity.setText("Počet volných míst: " + offer.getAvailableCapacity());
+
+        if (offer.getAvailableCapacity() > 0) {
+            //addTextPanelItem(this.btnBook);
+        }
 
         return this;
     }

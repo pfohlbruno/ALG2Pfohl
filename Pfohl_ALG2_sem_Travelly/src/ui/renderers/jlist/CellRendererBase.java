@@ -3,6 +3,7 @@ package ui.renderers.jlist;
 import ui.models.ModelWithImage;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
      * Panel, který obsahuje veškerý obsah buňky (skládá se z obrázku).
      */
     private JPanel panelContent = new JPanel(new GridLayout(2, 1));
-    private JPanel panelHeading = new JPanel(new GridLayout(0, 1));
+    private JPanel panelHeading = new JPanel(new GridLayout(0, 4));
     private JPanel panelText = new JPanel(new GridLayout(0, 1));
 
     /**
@@ -51,17 +52,18 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
     public CellRendererBase() {
         // Nastavení layoutu buňky.
         setLayout(new BorderLayout(5, 5));
-
+        // Ohraničení buňky.
+        this.setBorder(new EmptyBorder(10,10, 10, 10));
         // Do hlavního panelu přidám panel s nadpisem a separátorem.
         this.panelContent.add(this.panelHeading);
         // Nadpis buňky.
+        this.lblHeading.setBorder(new EmptyBorder(0, 10, 0, 0));
         this.panelHeading.add(this.lblHeading);
-        this.panelHeading.setOpaque(true);
+
         // Separátor nadpisu a obsahu.
         this.headingSeparator.setSize(-1, 2);
         this.headingSeparator.setForeground(Color.lightGray);
         this.headingSeparator.setOpaque(true);
-        this.panelHeading.add(this.headingSeparator);
 
         // Do hlavního panelu přidám panel s textovými položkami.
         this.panelContent.add(this.panelText);
@@ -90,6 +92,7 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
      */
     protected void addTextPanelItem(JLabel lbl) {
         this.panelTextItems.add(lbl);
+        lbl.setBorder(new EmptyBorder(5, 10, 5, 0));
         panelText.add(lbl);
     }
 

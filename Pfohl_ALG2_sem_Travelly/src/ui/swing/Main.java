@@ -30,6 +30,7 @@ public class Main extends JFrame{
     private JPanel pnlOffers;
     private JPanel pnlBookings;
     private JComboBox cbHotelsOrder;
+    private JComboBox cbOffersOrder;
 
     private AppModel appModel;
 
@@ -45,7 +46,7 @@ public class Main extends JFrame{
         this.lbHotels.setFixedCellHeight(100);
 
         // Nastavení výšky buňky nabídky zájezdu.
-        this.lbOffers.setFixedCellHeight(150);
+        this.lbOffers.setFixedCellHeight(250);
 
         // Inicializace hlavního modelu.
         try {
@@ -67,9 +68,15 @@ public class Main extends JFrame{
         this.lbBookings.setModel(this.appModel.getBookings());
         this.lbBookings.setCellRenderer(new BookingRenderer());
 
+        // Řazení hotelů.
         this.cbHotelsOrder.setModel(this.appModel.getHotelOrderingItems());
         this.cbHotelsOrder.setRenderer(new OrderItemListCellRenderer());
         this.cbHotelsOrder.addActionListener (e -> this.appModel.refreshData());
+
+        // Řazení nabídek zájezdů.
+        this.cbOffersOrder.setModel(this.appModel.getOfferOrderingItems());
+        this.cbOffersOrder.setRenderer(new OrderItemListCellRenderer());
+        this.cbOffersOrder.addActionListener (e -> this.appModel.refreshData());
 
         this.pack();
     }

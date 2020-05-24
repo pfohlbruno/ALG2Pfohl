@@ -6,6 +6,7 @@ import app.entities.Hotel;
 import app.entities.Offer;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.comparators.HotelStarsComparator;
+import ui.comparators.OfferPriceComparator;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -29,10 +30,15 @@ public class AppModel {
     public AppModel() throws IOException {
         this.provider = DataProvider.getInstance();
 
+        // Řazení hotelů
         this.hotelOrderingItems.addElement(new ComboOrderItem("Počet hvězdiček: od nejlepšího", new HotelStarsComparator().reversed()));
         this.hotelOrderingItems.addElement(new ComboOrderItem("Počet hvězdiček: od nejhoršího", new HotelStarsComparator()));
         this.hotelOrderingItems.addElement(new ComboOrderItem("Abecedně: vzestupně", new HotelStarsComparator()));
         this.hotelOrderingItems.addElement(new ComboOrderItem("Abecedně: sestupně", new HotelStarsComparator().reversed()));
+
+        // Řazení nabídek
+        this.offerOrderingItems.addElement(new ComboOrderItem("Od nejlevnějšího", new OfferPriceComparator()));
+        this.offerOrderingItems.addElement(new ComboOrderItem("Od nejdražšího", new OfferPriceComparator().reversed()));
 
         refreshData();
     }
@@ -50,9 +56,12 @@ public class AppModel {
         hotels.forEach(h -> this.hotels.addElement(h));
 
         // Nabídky
-        List<Offer> offers = provider.getOfferProvider().getAll();
+        List<OfferModel> offers = this.provider.getOfferProvider().getAll().stream()
+                .map(o -> OfferModel.getFromEntity(o, this.provider))
+                .sorted(getOfferComparator())
+                .collect(Collectors.toList());
         this.offers.removeAllElements();
-        offers.forEach(o -> this.offers.addElement(OfferModel.getFromEntity(o, this.provider)));
+        offers.forEach(o -> this.offers.addElement(o));
 
         // Rezervace
         List<Booking> bookings  = provider.getBookingProvider().getAll();
@@ -98,6 +107,10 @@ public class AppModel {
 
     private Comparator<HotelModel> getHotelComparator() {
         return ((ComboOrderItem)this.hotelOrderingItems.getSelectedItem()).getComparator();
+    }
+
+    private Comparator<OfferModel> getOfferComparator() {
+        return ((ComboOrderItem)this.offerOrderingItems.getSelectedItem()).getComparator();
     }
 
     /**
