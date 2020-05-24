@@ -5,12 +5,16 @@ import app.data.providers.OfferProvider;
 import app.entities.Hotel;
 import app.entities.Offer;
 import ui.models.AppModel;
+import ui.renderers.jcombobox.OrderItemListCellRenderer;
 import ui.renderers.jlist.BookingRenderer;
 import ui.renderers.jlist.HotelRenderer;
 import ui.renderers.jlist.OfferRenderer;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main extends JFrame{
@@ -25,6 +29,7 @@ public class Main extends JFrame{
     private JList lbBookings;
     private JPanel pnlOffers;
     private JPanel pnlBookings;
+    private JComboBox cbHotelsOrder;
 
     private AppModel appModel;
 
@@ -61,6 +66,10 @@ public class Main extends JFrame{
         // "Binding" kolekce nabídek
         this.lbBookings.setModel(this.appModel.getBookings());
         this.lbBookings.setCellRenderer(new BookingRenderer());
+
+        this.cbHotelsOrder.setModel(this.appModel.getHotelOrderingItems());
+        this.cbHotelsOrder.setRenderer(new OrderItemListCellRenderer());
+        this.cbHotelsOrder.addActionListener (e -> this.appModel.refreshData());
 
         this.pack();
     }

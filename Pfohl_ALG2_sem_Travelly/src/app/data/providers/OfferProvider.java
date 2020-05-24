@@ -1,6 +1,8 @@
 package app.data.providers;
 
-import app.comparators.OfferPriceComparator;
+import app.entities.Hotel;
+import ui.comparators.HotelStarsComparator;
+import ui.comparators.OfferPriceComparator;
 import app.entities.Offer;
 
 import java.io.IOException;
@@ -33,21 +35,5 @@ public class OfferProvider extends ProviderBase<Offer>{
                 .filter(o -> o.getHotelId().equals(id))
                 .collect(Collectors
                 .toCollection(ArrayList::new));
-    }
-
-    /**
-     * Setřídí nabídky dle ceny (od nejlevnější po nejdražší).
-     * @param offers Nabídky, které se mají setřídit.
-     */
-    public static void sortByPrice(List<Offer> offers) {
-        offers.sort(new OfferPriceComparator());
-    }
-
-    /**
-     * Setřídí nabídky dle ceny (od nejdražší po nejlevnější).
-     * @param offers Nabídky, které se mají setřídit.
-     */
-    public static void sortByPriceDesc(List<Offer> offers) {
-        offers.sort(new OfferPriceComparator().reversed());
     }
 }

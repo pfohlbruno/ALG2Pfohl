@@ -1,6 +1,6 @@
 package app.data.providers;
 
-import app.comparators.HotelStarsComparator;
+import ui.comparators.HotelStarsComparator;
 import app.entities.Hotel;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,13 +28,5 @@ public class HotelProvider extends ProviderBase<Hotel>{
                 .collect(Collectors
                     .toCollection(ArrayList::new)
                 );
-    }
-
-    public static void sortByStars(List<Hotel> hotels) {
-        hotels.sort(new HotelStarsComparator());
-    }
-
-    public static void sortByPriceDesc(List<Hotel> hotels) {
-        hotels.sort(new HotelStarsComparator().reversed());
     }
 }

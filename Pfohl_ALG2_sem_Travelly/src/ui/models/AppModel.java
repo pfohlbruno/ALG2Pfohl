@@ -5,10 +5,12 @@ import app.entities.Booking;
 import app.entities.Hotel;
 import app.entities.Offer;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import ui.comparators.HotelStarsComparator;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,9 +23,17 @@ public class AppModel {
     private DefaultListModel<HotelModel> hotels = new DefaultListModel<>();
     private DefaultListModel<OfferModel> offers = new DefaultListModel<>();
     private DefaultListModel<BookingModel> bookings = new DefaultListModel<>();
+    private DefaultComboBoxModel<ComboOrderItem> hotelOrderingItems = new DefaultComboBoxModel<>();
+    private DefaultComboBoxModel<ComboOrderItem> offerOrderingItems = new DefaultComboBoxModel<>();
 
     public AppModel() throws IOException {
         this.provider = DataProvider.getInstance();
+
+        this.hotelOrderingItems.addElement(new ComboOrderItem("Počet hvězdiček: od nejlepšího", new HotelStarsComparator().reversed()));
+        this.hotelOrderingItems.addElement(new ComboOrderItem("Počet hvězdiček: od nejhoršího", new HotelStarsComparator()));
+        this.hotelOrderingItems.addElement(new ComboOrderItem("Abecedně: vzestupně", new HotelStarsComparator()));
+        this.hotelOrderingItems.addElement(new ComboOrderItem("Abecedně: sestupně", new HotelStarsComparator().reversed()));
+
         refreshData();
     }
 
@@ -32,9 +42,12 @@ public class AppModel {
      */
     public void refreshData() {
         // Hotely
-        List<Hotel> hotels = this.provider.getHotelProvider().getAll();
+        List<HotelModel> hotels = this.provider.getHotelProvider().getAll().stream()
+                .map(HotelModel::getFromEntity)
+                .sorted(getHotelComparator())
+                .collect(Collectors.toList());
         this.hotels.removeAllElements();
-        hotels.forEach(h -> this.hotels.addElement(HotelModel.getFromEntity(h)));
+        hotels.forEach(h -> this.hotels.addElement(h));
 
         // Nabídky
         List<Offer> offers = provider.getOfferProvider().getAll();
@@ -59,6 +72,14 @@ public class AppModel {
         return this.bookings;
     }
 
+    public DefaultComboBoxModel<ComboOrderItem> getHotelOrderingItems() {
+        return hotelOrderingItems;
+    }
+
+    public DefaultComboBoxModel<ComboOrderItem> getOfferOrderingItems() {
+        return offerOrderingItems;
+    }
+
     /**
      * Pokusí se vytvořit rezervaci na zvolenou nabídku.
      * @param offer Nabídka, která se má zarezervovat
@@ -73,6 +94,10 @@ public class AppModel {
      */
     public void removeBooking(Booking booking) {
         throw new NotImplementedException();
+    }
+
+    private Comparator<HotelModel> getHotelComparator() {
+        return ((ComboOrderItem)this.hotelOrderingItems.getSelectedItem()).getComparator();
     }
 
     /**
