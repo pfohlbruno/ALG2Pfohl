@@ -1,12 +1,13 @@
 package ui.renderers.jlist;
 
 import app.entities.Offer;
+import ui.models.OfferModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 
-public class OfferRenderer extends CellRendererBase<Offer> {
+public class OfferRenderer extends CellRendererBase<OfferModel> {
     private JLabel lblPrice = new JLabel();
     private JLabel lblDate = new JLabel();
     private JLabel lblTransportType = new JLabel();
@@ -22,7 +23,7 @@ public class OfferRenderer extends CellRendererBase<Offer> {
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends Offer> list, Offer offer, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends OfferModel> list, OfferModel offer, int index, boolean isSelected, boolean cellHasFocus) {
         super.getListCellRendererComponent(list, offer, index, isSelected, cellHasFocus);
 
         // Název
@@ -33,7 +34,7 @@ public class OfferRenderer extends CellRendererBase<Offer> {
 
         // Období
         SimpleDateFormat f = new SimpleDateFormat("dd. MM. yyyy");
-        this.lblDate.setText(String.format("Období: %s - %s", f.format(offer.getFrom()), f.format(offer.getTo())));
+        this.lblDate.setText(offer.getPeriod());
 
         // Stravování
         this.lblServiceType.setText("Stravování: " + offer.getServiceType().toString());

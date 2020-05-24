@@ -3,7 +3,6 @@ package app.entities;
 import com.opencsv.bean.CsvBindByName;
 
 public class Booking extends EntityBase{
-
     @CsvBindByName
     private String offerId;
     @CsvBindByName

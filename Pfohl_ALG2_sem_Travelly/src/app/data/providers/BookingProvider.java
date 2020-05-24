@@ -36,6 +36,6 @@ public class BookingProvider extends ProviderBase<Booking>{
 
     @Override
     public String getSourcePath() {
-        return "bookings.csv";
+        return "C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\bookings.csv";
     }
 }

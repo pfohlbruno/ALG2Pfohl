@@ -4,6 +4,8 @@ import app.data.providers.HotelProvider;
 import app.data.providers.OfferProvider;
 import app.entities.Hotel;
 import app.entities.Offer;
+import ui.models.AppModel;
+import ui.renderers.jlist.BookingRenderer;
 import ui.renderers.jlist.HotelRenderer;
 import ui.renderers.jlist.OfferRenderer;
 
@@ -24,56 +26,41 @@ public class Main extends JFrame{
     private JPanel pnlOffers;
     private JPanel pnlBookings;
 
-    private List<Hotel> hotels;
-    private List<Offer> offers;
-    private DefaultListModel<Hotel> listHotelsModel;
-    private DefaultListModel<Offer> listOffersModel;
+    private AppModel appModel;
 
     public Main() {
         super("Travelly");
         this.setContentPane(this.pnlMain);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Nastavení rozměrů okna.
         setSize(this.width, this.height);
 
+        // Nastavení buňky hotelu.
         this.lbHotels.setFixedCellHeight(100);
 
-        try {
-            HotelProvider hotelProvider = new HotelProvider();
-            this.hotels = hotelProvider.getAll();
-            listHotelsModel = new DefaultListModel<>();
-
-            for (Hotel hotel : this.hotels) {
-                listHotelsModel.addElement(hotel);
-            }
-
-            this.lbHotels.setModel(listHotelsModel);
-            this.lbHotels.setCellRenderer(new HotelRenderer());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Nabídky zájezdů ...
-
+        // Nastavení výšky buňky nabídky zájezdu.
         this.lbOffers.setFixedCellHeight(150);
 
-        this.pack();
-
+        // Inicializace hlavního modelu.
         try {
-            OfferProvider offerProvider = new OfferProvider();
-            this.offers = offerProvider.getAll();
-            this.listOffersModel = new DefaultListModel<>();
-
-            for (Offer offer : this.offers) {
-                this.listOffersModel.addElement(offer);
-            }
-
-            this.lbOffers.setModel(this.listOffersModel);
-            this.lbOffers.setCellRenderer(new OfferRenderer());
-
+            this.appModel = new AppModel();
         } catch (IOException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Inicializace modelu se nezdařila. Důvodem je neúspěšné načtení dat .. " +  e.getMessage());
         }
+
+        // "Binding" kolekce hotelů
+        this.lbHotels.setModel(this.appModel.getHotels());
+        this.lbHotels.setCellRenderer(new HotelRenderer());
+
+        // "Binding" kolekce nabídek
+        this.lbOffers.setModel(this.appModel.getOffers());
+        this.lbOffers.setCellRenderer(new OfferRenderer());
+
+        // "Binding" kolekce nabídek
+        this.lbBookings.setModel(this.appModel.getBookings());
+        this.lbBookings.setCellRenderer(new BookingRenderer());
 
         this.pack();
     }

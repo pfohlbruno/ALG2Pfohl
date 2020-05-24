@@ -10,12 +10,13 @@ import utils.csv.CsvWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Bázová třída provideru dat (z csv souboru).
  * @param <T> Generický parametr, který určuje s kterým datovým objektem tato třída pracuje.
  */
-public abstract class ProviderBase<T> {
+public abstract class ProviderBase<T extends EntityBase> {
     protected List<T> data;
     private Class<T> genericType;
 
@@ -46,11 +47,13 @@ public abstract class ProviderBase<T> {
      * @return Objekt se specifikovaným id.
      */
     public T getById(String id) {
-        return this.data
-                .stream()
-                .filter(o -> ((EntityBase)o).getId() == id)
-                .findFirst()
-                .get();
+        for (T o : this.data) {
+            if (o.getId().equals(id)) {
+                return o;
+            }
+        }
+
+        return null;
     }
 
     private static void registerDateConverter() {

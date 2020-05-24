@@ -17,6 +17,10 @@ public class DataProvider {
     private HotelProvider hotelProvider ;
     private OfferProvider offerProvider;
 
+    private DataProvider () {
+
+    }
+
     /**
      * Inicializuje objekt. Vytvoří všechny providery a uloží si je do privátních proměnných.
      * @throws IOException
