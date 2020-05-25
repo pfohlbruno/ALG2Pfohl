@@ -9,6 +9,7 @@ import ui.comparators.HotelStarsComparator;
 import ui.comparators.OfferPriceComparator;
 
 import javax.swing.*;
+import java.awt.print.Book;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -92,9 +93,12 @@ public class AppModel {
     /**
      * Pokusí se vytvořit rezervaci na zvolenou nabídku.
      * @param offer Nabídka, která se má zarezervovat
+     * @param i
      */
-    public void createBooking(OfferModel offer) {
-        throw new NotImplementedException();
+    public void createBooking(OfferModel offer) throws Exception {
+        Offer entity = this.provider.getOfferProvider().getById(offer.getId());
+        this.provider.getBookingProvider().create(entity, 1);
+        refreshData();
     }
 
     /**
@@ -102,7 +106,7 @@ public class AppModel {
      * @param booking Rezervace, která se má zrušit.
      */
     public void removeBooking(Booking booking) {
-        throw new NotImplementedException();
+        Booking entity = this.provider.getBookingProvider().getById(booking.getId());
     }
 
     private Comparator<HotelModel> getHotelComparator() {

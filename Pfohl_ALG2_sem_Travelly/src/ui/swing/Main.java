@@ -5,6 +5,7 @@ import app.data.providers.OfferProvider;
 import app.entities.Hotel;
 import app.entities.Offer;
 import ui.models.AppModel;
+import ui.models.OfferModel;
 import ui.renderers.jcombobox.OrderItemListCellRenderer;
 import ui.renderers.jlist.BookingRenderer;
 import ui.renderers.jlist.HotelRenderer;
@@ -31,6 +32,7 @@ public class Main extends JFrame{
     private JPanel pnlBookings;
     private JComboBox cbHotelsOrder;
     private JComboBox cbOffersOrder;
+    private JButton btnBook;
 
     private AppModel appModel;
 
@@ -47,6 +49,9 @@ public class Main extends JFrame{
 
         // Nastavení výšky buňky nabídky zájezdu.
         this.lbOffers.setFixedCellHeight(250);
+
+        // Nastavení výšky buňky rezervace.
+        this.lbBookings.setFixedCellHeight(200);
 
         // Inicializace hlavního modelu.
         try {
@@ -78,11 +83,32 @@ public class Main extends JFrame{
         this.cbOffersOrder.setRenderer(new OrderItemListCellRenderer());
         this.cbOffersOrder.addActionListener (e -> this.appModel.refreshData());
 
+        // Tlačítko "Rezervovat" (Rezervuje aktuálně zvolenou nabídku v JListu)
+        ActionListener listener = e -> {
+            try {
+                this.appModel.createBooking((OfferModel)(this.lbOffers.getSelectedValue()));
+            } catch (Exception ex) {
+                showMessageDialog(ex.getMessage());
+            }
+        };
+
+        this.btnBook.addActionListener(listener);
+
         this.pack();
     }
 
     public static void main(String[] args) {
+        // Vytvořím instanci okna.
         Main main = new Main();
+        // Zviditelním okno.
         main.setVisible(true);
+    }
+
+    /**
+     * Zobrazí dialog s textem předaným v parametru.
+     * @param text Text, který se má v dialogu zobrazit.
+     */
+    private void showMessageDialog(String text) {
+        JOptionPane.showMessageDialog(this, text);
     }
 }

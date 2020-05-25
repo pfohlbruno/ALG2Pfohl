@@ -37,9 +37,9 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
     /**
      * Panel, který obsahuje veškerý obsah buňky (skládá se z obrázku).
      */
-    private JPanel panelContent = new JPanel(new GridLayout(2, 1));
-    private JPanel panelHeading = new JPanel(new GridLayout(0, 4));
-    private JPanel panelText = new JPanel(new GridLayout(0, 1));
+    protected JPanel panelContent = new JPanel(new GridLayout(2, 1));
+    protected JPanel panelHeading = new JPanel(new GridLayout(0, 4));
+    protected JPanel panelText = new JPanel(new GridLayout(0, 1));
 
     /**
      * Kolekce textových položek, které se v buňce zobrazují pod sebe.

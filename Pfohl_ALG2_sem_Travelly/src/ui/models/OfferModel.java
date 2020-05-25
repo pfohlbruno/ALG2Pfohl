@@ -11,6 +11,8 @@ import app.enums.TransportTypeEnum;
  * @author Bruno Pfohl
  */
 public class OfferModel {
+    private String id;
+    private String name;
     private String hotelId;
     private int price;
 
@@ -25,6 +27,8 @@ public class OfferModel {
      * @param offer Entita nabídky zájezdu, ze které se má vytvořit model.
      */
     private OfferModel(Offer offer) {
+        this.id = offer.getId();
+        this.name = offer.getName();
         this.hotelId = offer.getHotelId();
         this.price = offer.getPrice();
         this.transportType = offer.getTransportType();
@@ -33,28 +37,60 @@ public class OfferModel {
         this.period = "čas";
     }
 
+    /**
+     * Vrací Id nabídky.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Vrací název nabídky zájezdu.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Vrací cenu nabídky zájezdu.
+     */
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
+    /**
+     * Vrací druh dopravy.
+     */
     public TransportTypeEnum getTransportType() {
-        return transportType;
+        return this.transportType;
     }
 
+    /**
+     * Vrací typ stravování (plná penze, polopenze, ...).
+     */
     public ServiceTypeEnum getServiceType() {
-        return serviceType;
+        return this.serviceType;
     }
 
+    /**
+     * Vrací počet dostupných míst, které lze ještě zarezervovat.
+     */
     public int getAvailableCapacity() {
-        return availableCapacity;
+        return this.availableCapacity;
     }
 
+    /**
+     * Vrací název hotelu.
+     */
     public String getHotelName() {
-        return hotelName;
+        return this.hotelName;
     }
 
+    /**
+     * Vrací období, kdy se má konat zájezd.
+     */
     public String getPeriod() {
-        return period;
+        return this.period;
     }
 
     /**

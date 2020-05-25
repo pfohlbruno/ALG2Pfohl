@@ -18,6 +18,9 @@ import java.util.Date;
 public class Offer extends EntityBase
 {
     @CsvBindByName
+    private String name;
+
+    @CsvBindByName
     private String hotelId;
 
     @CsvBindByName
@@ -63,6 +66,13 @@ public class Offer extends EntityBase
         this.serviceType = serviceType;
         this.capacity = capacity;
         this.usedCapacity = usedCapacity;
+    }
+
+    /**
+     * Vrací název nabídky zájezdu.
+     */
+    public String getName() {
+        return this.name;
     }
 
     /**

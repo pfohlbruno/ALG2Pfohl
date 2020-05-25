@@ -14,6 +14,7 @@ public class BookingModel {
     private int personCount;
     private int price;
     private String hotelName;
+    private String offerName;
     private String serviceTypeFormatted;
     private String transportTypeFormatted;
     private String periodFormatted;
@@ -27,28 +28,53 @@ public class BookingModel {
         this.personCount = booking.getPersonCount();
     }
 
+    /**
+     * Vrací počet rezervovaných osob.
+     */
     public int getPersonCount() {
-        return personCount;
+        return this.personCount;
     }
 
+    /**
+     * Vrací cenu rezervace.
+     */
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
+    /**
+     * Vrací název hotelu.
+     */
     public String getHotelName() {
-        return hotelName;
+        return this.hotelName;
     }
 
+    /**
+     * Vrací druh stravování na dovolené (zformátovaný textový řetězec).
+     */
     public String getServiceTypeFormatted() {
-        return serviceTypeFormatted;
+        return this.serviceTypeFormatted;
     }
 
+    /**
+     * Vrací druh dopravy (zformátovaný textový řetězec).
+     */
     public String getTransportTypeFormatted() {
-        return transportTypeFormatted;
+        return this.transportTypeFormatted;
     }
 
+    /**
+     * Vrací období zájezdu (zformátovaný textový řetězec).
+     */
     public String getPeriodFormatted() {
-        return periodFormatted;
+        return this.periodFormatted;
+    }
+
+    /**
+     * Vrací název zájezdu.
+     */
+    public String getOfferName() {
+        return this.offerName;
     }
 
     /**
@@ -65,6 +91,7 @@ public class BookingModel {
         Offer offer = provider.getOfferProvider().getById(booking.getOfferId());
         Hotel hotel = provider.getHotelProvider().getById(offer.getHotelId());
 
+        instance.offerName = offer.getName();
         instance.price = offer.getPrice();
         instance.hotelName = hotel.getName();
         instance.serviceTypeFormatted = offer.getServiceType().toString();

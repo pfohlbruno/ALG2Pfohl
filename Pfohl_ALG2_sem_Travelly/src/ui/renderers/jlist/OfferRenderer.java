@@ -4,6 +4,8 @@ import ui.models.OfferModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 public class OfferRenderer extends CellRendererBase<OfferModel> {
@@ -12,17 +14,12 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
     private JLabel lblTransportType = new JLabel();
     private JLabel lblServiceType = new JLabel();
     private JLabel lblAvailableCapacity = new JLabel();
-    private JButton btnBook = new JButton();
-
     public OfferRenderer() {
         addTextPanelItem(this.lblPrice);
         addTextPanelItem(this.lblDate);
         addTextPanelItem(this.lblTransportType);
         addTextPanelItem(this.lblServiceType);
         addTextPanelItem(this.lblAvailableCapacity);
-
-        this.btnBook.setText("Rezervovat");
-        add(this.btnBook, BorderLayout.EAST);
     }
 
     @Override
@@ -30,7 +27,7 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
         super.getListCellRendererComponent(list, offer, index, isSelected, cellHasFocus);
 
         // Název
-        setHeading("Nabídka");
+        setHeading(offer.getName());
 
         // Cena
         this.lblPrice.setText("Cena: " +  offer.getPrice());
@@ -47,10 +44,6 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
 
         // Počet volných míst
         this.lblAvailableCapacity.setText("Počet volných míst: " + offer.getAvailableCapacity());
-
-        if (offer.getAvailableCapacity() > 0) {
-            //addTextPanelItem(this.btnBook);
-        }
 
         return this;
     }
