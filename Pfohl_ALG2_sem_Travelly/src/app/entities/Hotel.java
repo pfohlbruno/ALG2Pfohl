@@ -72,7 +72,7 @@ public class Hotel extends EntityBase {
      * Vrací cestu k obrázku hotelu na disku.
      */
     public String getImgPath() {
-        return this.imgPath;
+        return "data\\imgs\\hotels\\" +  this.imgPath;
     }
 
     public List<Offer> getOffers(OfferProvider offerProvider) {

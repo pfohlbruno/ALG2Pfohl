@@ -29,6 +29,13 @@ public class BookingModel {
     }
 
     /**
+     * Vrací id hotelu.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
      * Vrací počet rezervovaných osob.
      */
     public int getPersonCount() {

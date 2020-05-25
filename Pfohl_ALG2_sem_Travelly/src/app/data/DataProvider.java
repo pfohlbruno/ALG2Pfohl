@@ -50,7 +50,8 @@ public class DataProvider {
      */
     public void saveAll () throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
         this.bookingProvider.save();
-        this.hotelProvider.save();
+        // Program nijak nemanipuluje s daty hotelu.
+        // this.hotelProvider.save();
         this.offerProvider.save();
     }
 

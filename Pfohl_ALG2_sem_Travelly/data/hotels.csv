@@ -1,4 +1,4 @@
-id;name;place;imgPath;stars
-1;Stellar;Cesko;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;4
-2;Roadside corn;Slovensko;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;2
-3;XRP;Mars;C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\imgs\\hotels\\hotelthumbnail.png;1
+ID;IMGPATH;NAME;PLACE;STARS
+1;hotelthumbnail.png;Stellar;Cesko;4
+2;hotelthumbnail.png;Roadside corn;Slovensko;2
+3;hotelthumbnail.png;XRP;Mars;1

@@ -4,9 +4,6 @@ import ui.models.OfferModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 
 public class OfferRenderer extends CellRendererBase<OfferModel> {
     private JLabel lblPrice = new JLabel();
@@ -33,8 +30,7 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
         this.lblPrice.setText("Cena: " +  offer.getPrice());
 
         // Období
-        SimpleDateFormat f = new SimpleDateFormat("dd. MM. yyyy");
-        this.lblDate.setText(offer.getPeriod());
+        this.lblDate.setText("Období:" + offer.getPeriod());
 
         // Stravování
         this.lblServiceType.setText("Stravování: " + offer.getServiceType().toString());
@@ -45,6 +41,13 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
         // Počet volných míst
         this.lblAvailableCapacity.setText("Počet volných míst: " + offer.getAvailableCapacity());
 
+        // Pokud není dostatek volných míst pro vytvoření rezervace, zobrazím kapacitu červeně.
+        if (offer.getAvailableCapacity() > 0) {
+            this.lblAvailableCapacity.setForeground(Color.black);
+        }
+        else {
+            this.lblAvailableCapacity.setForeground(Color.red);
+        }
         return this;
     }
 }

@@ -93,11 +93,11 @@ public class AppModel {
     /**
      * Pokusí se vytvořit rezervaci na zvolenou nabídku.
      * @param offer Nabídka, která se má zarezervovat
-     * @param i
      */
     public void createBooking(OfferModel offer) throws Exception {
         Offer entity = this.provider.getOfferProvider().getById(offer.getId());
         this.provider.getBookingProvider().create(entity, 1);
+        this.provider.saveAll();
         refreshData();
     }
 
@@ -105,8 +105,11 @@ public class AppModel {
      * Zruší zvolenou rezervaci.
      * @param booking Rezervace, která se má zrušit.
      */
-    public void removeBooking(Booking booking) {
+    public void cancelBooking(BookingModel booking) throws Exception {
         Booking entity = this.provider.getBookingProvider().getById(booking.getId());
+        this.provider.getBookingProvider().cancel(entity, provider);
+        this.provider.saveAll();
+        refreshData();
     }
 
     private Comparator<HotelModel> getHotelComparator() {

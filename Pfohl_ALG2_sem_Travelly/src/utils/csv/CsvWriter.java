@@ -43,5 +43,7 @@ public class CsvWriter<T> {
                 .build();
 
         beanToCsv.write(beans);
+
+        writer.close();
     }
 }
