@@ -5,6 +5,7 @@ import app.entities.Hotel;
 import app.entities.Offer;
 import app.enums.ServiceTypeEnum;
 import app.enums.TransportTypeEnum;
+import utils.date.DateHelper;
 
 /**
  * Model nabídky zájezdu určený pro zobrazování dat v UI.
@@ -34,7 +35,7 @@ public class OfferModel {
         this.transportType = offer.getTransportType();
         this.serviceType = offer.getServiceType();
         this.availableCapacity = offer.getAvailableCapacity();
-        this.period = "čas";
+        this.period = DateHelper.getShortDateString(offer.getFrom()) + " - " + DateHelper.getShortDateString(offer.getTo());
     }
 
     /**

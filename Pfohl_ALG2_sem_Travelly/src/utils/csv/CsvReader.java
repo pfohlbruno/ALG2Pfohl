@@ -1,5 +1,6 @@
 package utils.csv;
 
+import app.data.providers.ProviderBase;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.*;

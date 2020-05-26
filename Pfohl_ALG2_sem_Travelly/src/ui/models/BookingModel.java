@@ -4,6 +4,11 @@ import app.data.DataProvider;
 import app.entities.Booking;
 import app.entities.Hotel;
 import app.entities.Offer;
+import utils.date.DateHelper;
+
+import java.time.format.FormatStyle;
+
+import static java.time.format.DateTimeFormatter.ofLocalizedDate;
 
 /**
  * Model rezervace určený pro zobrazování dat v UI.
@@ -101,8 +106,9 @@ public class BookingModel {
         instance.offerName = offer.getName();
         instance.price = offer.getPrice();
         instance.hotelName = hotel.getName();
-        instance.serviceTypeFormatted = offer.getServiceType().toString();
-        instance.transportTypeFormatted = offer.getTransportType().toString();
+        instance.serviceTypeFormatted = offer.getServiceType().getName();
+        instance.transportTypeFormatted = offer.getTransportType().getName();
+        instance.periodFormatted = DateHelper.getShortDateString(offer.getFrom()) + " - " + DateHelper.getShortDateString(offer.getTo());
 
         return instance;
     }

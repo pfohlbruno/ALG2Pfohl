@@ -196,3 +196,13 @@ Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/provider
 Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/AppModel.class
 Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/BookingModel.class
 Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/renderers/jlist/BookingRenderer.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/IProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/OfferProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/ProviderBase.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/BookingModel.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/HotelModel.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/IWithImage.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/ModelWithImage.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/models/OfferModel.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/ui/renderers/jlist/BookingRenderer.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/utils/date/DateHelper.class

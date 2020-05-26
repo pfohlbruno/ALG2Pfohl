@@ -27,19 +27,19 @@ public class OfferRenderer extends CellRendererBase<OfferModel> {
         setHeading(offer.getName());
 
         // Cena
-        this.lblPrice.setText("Cena: " +  offer.getPrice());
+        this.lblPrice.setText(createLabelString("Cena", offer.getPrice()));
 
         // Období
-        this.lblDate.setText("Období:" + offer.getPeriod());
+        this.lblDate.setText(createLabelString("Období", offer.getPeriod()));
 
         // Stravování
-        this.lblServiceType.setText("Stravování: " + offer.getServiceType().toString());
+        this.lblServiceType.setText(createLabelString("Stravování", offer.getServiceType().getName()));
 
         // Doprava
-        this.lblTransportType.setText("Doprava: " + offer.getTransportType().toString());
+        this.lblTransportType.setText(createLabelString("Doprava", offer.getTransportType().getName()));
 
         // Počet volných míst
-        this.lblAvailableCapacity.setText("Počet volných míst: " + offer.getAvailableCapacity());
+        this.lblAvailableCapacity.setText(createLabelString("Volných míst", offer.getAvailableCapacity()));
 
         // Pokud není dostatek volných míst pro vytvoření rezervace, zobrazím kapacitu červeně.
         if (offer.getAvailableCapacity() > 0) {

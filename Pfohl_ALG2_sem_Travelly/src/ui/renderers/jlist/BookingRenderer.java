@@ -57,19 +57,19 @@ public class BookingRenderer extends CellRendererBase<BookingModel> {
         setHeading(booking.getOfferName());
 
         // Období zájezdu.
-        this.period.setText("Období: " + booking.getPeriodFormatted());
+        this.period.setText(createLabelString("Období", booking.getPeriodFormatted()));
 
         // Cena rezervace.
-        this.price.setText("Cena: " + booking.getPrice());
+        this.price.setText(createLabelString("Cena", booking.getPrice()));
 
         // Počet zarezervovaných osob.
-        this.personCount.setText("Počet osob: " + booking.getPersonCount());
+        this.personCount.setText(createLabelString("Počet osob", booking.getPersonCount()));
 
         // Druh stravování.
-        this.serviceType.setText("Stravování: " + booking.getServiceTypeFormatted());
+        this.serviceType.setText(createLabelString("Stravování", booking.getServiceTypeFormatted()));
 
         // Druh dopravy.
-        this.transportType.setText("Doprava: " + booking.getTransportTypeFormatted());
+        this.transportType.setText(createLabelString("Doprava", booking.getTransportTypeFormatted()));
 
         return this;
     }

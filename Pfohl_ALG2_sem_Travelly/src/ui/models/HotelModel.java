@@ -6,19 +6,20 @@ import app.entities.Hotel;
  * Model hotelu určený pro zobrazování dat v UI.
  * @author Bruno Pfohl
  */
-public class HotelModel extends ModelWithImage {
+public class HotelModel implements IWithImage {
     private String id;
     private String name;
     private String location;
     private int stars;
+    private String imgPath;
 
     /**
      * Privátní konstruktor, který vrácí instanci objektu vytvořenou z entity.
      * @param hotel Entita hotelu, ze které se má vytvořit model.
      */
     private HotelModel(Hotel hotel) {
-        super(hotel.getImgPath());
         this.id = hotel.getId();
+        this.imgPath = hotel.getImgPath();
         this.name = hotel.getName();
         this.location = hotel.getPlace();
         this.stars = hotel.getStars();
@@ -43,5 +44,10 @@ public class HotelModel extends ModelWithImage {
      */
     public static HotelModel getFromEntity(Hotel hotel) {
         return new HotelModel(hotel);
+    }
+
+    @Override
+    public String getImgPath() {
+        return this.imgPath;
     }
 }

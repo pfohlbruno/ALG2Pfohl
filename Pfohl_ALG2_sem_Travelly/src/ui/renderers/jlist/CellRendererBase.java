@@ -1,6 +1,6 @@
 package ui.renderers.jlist;
 
-import ui.models.ModelWithImage;
+import ui.models.IWithImage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -112,7 +112,7 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
         // Nastavení ikonky...
         if (this.useIcon) {
             // Přetypuji objekt na "EntityWithImage" a získám z něho cestu k obrázku.
-            String imgPath = ((ModelWithImage)o).getImgPath();
+            String imgPath = ((IWithImage)o).getImgPath();
             // Vytvořím objekt ikonky.
             ImageIcon icon = new ImageIcon(new ImageIcon(imgPath).getImage().getScaledInstance(-1, list.getFixedCellHeight(), Image.SCALE_DEFAULT));
             // Nastavím ikonku.
@@ -131,5 +131,27 @@ public class CellRendererBase<T> extends JPanel implements ListCellRenderer<T> {
         this.headingSeparator.setBackground(backGround);
 
         return this;
+    }
+
+    /**
+     * Vytvoří zformátovaný řádek buňky s textem.
+     * @param key Levá strana popisku
+     * @param value Pravá strana popisku.
+     * @return Zformátovaný popisek.
+     */
+    protected String createLabelString(String key, int value) {
+        return createLabelString(key, String.valueOf(value));
+    }
+
+    /**
+     * Vytvoří zformátovaný řádek buňky s textem.
+     * @param key Levá strana popisku
+     * @param value Pravá strana popisku.
+     * @return Zformátovaný popisek.
+     */
+    protected String createLabelString(String key, String value) {
+        int width = 40 - key.length();
+        String format = "%-" + width + "s %s";
+        return String.format(format, key, value);
     }
 }

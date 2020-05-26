@@ -3,21 +3,31 @@ package app.enums;
 /**
  * Typ služby poskytovaný hotelem (stravování).
  */
-public enum ServiceTypeEnum {
+public enum ServiceTypeEnum{
     /**
      * Polopenze
      */
-    halfBoard,
+    halfBoard("polopenze"),
     /**
      * Plná penze
      */
-    fullBoard,
+    fullBoard("plná penze"),
     /**
      * All inclusive
      */
-    allInclusive,
+    allInclusive("all inclusive"),
     /**
      * Bez stravování
      */
-    poorFella
+    poorFella("bez stravování");
+
+    private String name;
+
+    ServiceTypeEnum(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }

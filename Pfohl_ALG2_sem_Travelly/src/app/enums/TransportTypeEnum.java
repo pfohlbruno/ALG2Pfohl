@@ -7,13 +7,23 @@ public enum TransportTypeEnum {
     /**
      * Autobusem
      */
-    bus,
+    bus("Autobusem"),
     /**
      * Letadlem
      */
-    plane,
+    plane("Letecky"),
     /**
      * Vlastní doprava.
      */
-    own
+    own("Vlastní");
+
+    private String name;
+
+    TransportTypeEnum(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }

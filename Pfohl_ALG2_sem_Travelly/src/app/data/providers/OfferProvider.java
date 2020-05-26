@@ -1,10 +1,6 @@
 package app.data.providers;
 
-import app.entities.Hotel;
-import ui.comparators.HotelStarsComparator;
-import ui.comparators.OfferPriceComparator;
 import app.entities.Offer;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
