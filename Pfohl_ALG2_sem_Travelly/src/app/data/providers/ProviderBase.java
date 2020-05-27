@@ -57,4 +57,6 @@ public abstract class ProviderBase<T extends EntityBase> implements IProvider<T>
     public List<T> getAll() {
         return this.data;
     }
+
+    public abstract String getSourcePath();
 }
