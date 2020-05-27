@@ -4,6 +4,9 @@ import cmd.code.CmdInterface;
 
 import java.io.File;
 
+/**
+ * Příkaz pro přejmenování složky/souboru.
+ */
 public class Rename extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {

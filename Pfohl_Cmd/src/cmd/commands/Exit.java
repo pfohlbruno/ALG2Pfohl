@@ -4,6 +4,10 @@ import cmd.code.CmdInterface;
 
 import java.io.File;
 
+/**
+ * Příkaz pro ukončení příkazové řádky.
+ * @author Bruno Pfohl
+ */
 public class Exit extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {

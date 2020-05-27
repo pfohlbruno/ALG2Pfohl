@@ -3,29 +3,40 @@ package cmd.commands;
 import cmd.code.CmdInterface;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+/**
+ * Příkaz pro vypsání souborů a složek v aktuálním pracovním adresáři.
+ * @author Bruno Pfohl
+ */
 public class Dir extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {
         File[] files = null;
+
+        // Pokud nebyl s příkazem předán žádný další parametr, vypíšu všechny soubory v aktuální složce.
         if (this.params.length == 1) {
             files = actualDir.listFiles();
         }
         else if(this.params.length == 2) {
-            files = actualDir.listFiles();
-            Arrays.sort(files);
+            // Pokud se jedná o "-o" parametr
+            if (this.params[1].equals("-o")) {
+                // Seřadím výstup.
+                files = actualDir.listFiles();
+                Arrays.sort(files);
+            }
         }
         else if (this.params.length == 3) {
             String switcher = this.params[1];
             String param = this.params[2];
 
             switch(switcher) {
+                // Pouze soubory se specifikovanou koncovkou.
                 case "-e":
                     files = actualDir.listFiles((File pathname) -> pathname.getName().endsWith(param));
                     break;
+                // Pouze soubory větší než ...
                 case "-s":
                     long size = Long.parseLong(param);
                     files = actualDir.listFiles((File pathname) -> pathname.getTotalSpace() > size);

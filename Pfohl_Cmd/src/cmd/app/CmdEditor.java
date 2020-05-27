@@ -6,6 +6,10 @@ import cmd.code.Parser;
 
 import java.io.File;
 
+/**
+ * Třída reprezentující vlastní implementaci příkazové řádky.
+ * @author Bruno Pfohl
+ */
 public class CmdEditor implements CmdInterface {
     private boolean isRunning;
     private File actualDir;

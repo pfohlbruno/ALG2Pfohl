@@ -4,13 +4,17 @@ import cmd.code.CmdInterface;
 
 import java.io.File;
 
+/**
+ * Třída příkazu cd (change directory).
+ * @author Bruno Pfohl
+ */
 public class Cd extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {
         if (this.params.length == 2) {
             String folderName = this.params[1];
 
-            if (folderName == "..") {
+            if (folderName.equals("..")) {
                 actualDir = actualDir.getParentFile();
             }
             else {

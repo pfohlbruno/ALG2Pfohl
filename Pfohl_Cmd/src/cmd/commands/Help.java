@@ -1,10 +1,13 @@
 package cmd.commands;
 
 import cmd.code.CmdInterface;
-import cmd.commands.Command;
 
 import java.io.File;
 
+/**
+ * Příkaz pro vypsání pomoci.
+ * @author Bruno Pfohl
+ */
 public class Help extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {

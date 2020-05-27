@@ -4,6 +4,10 @@ import cmd.code.CmdInterface;
 
 import java.io.File;
 
+/**
+ * Příkaz pro vytvoření složky (make dir).
+ * @author Bruno Pfohl
+ */
 public class Mkdir extends Command {
     @Override
     public String execute(File actualDir, CmdInterface cmd) {
