@@ -17,11 +17,22 @@ public class CsvReader<T> {
     private char separator = ';';
     private  Class<T> genericType;
 
+    /**
+     * Konstruktor pro vytvoření instance čtečky.
+     * @param type Objektový typ, na který se budou jednotlivé řádky mapovat.
+     * @param file Soubor, se kterým reader pracuje.
+     */
     public CsvReader(final Class<T> type, String file) {
         this.genericType = type;
         this.file = file;
     }
 
+    /**
+     * Konstruktor pro vytvoření instance čtečky se specifickým separačním znakem.
+     * @param type Objektový typ, na který se budou jednotlivé řádky mapovat.
+     * @param file Soubor, se kterým reader pracuje.
+     * @param separator Separační znak jednotlivých polí.
+     */
     public CsvReader(final Class<T> type, String file, char separator) {
         this(type, file);
         this.separator = separator;
@@ -34,6 +45,9 @@ public class CsvReader<T> {
         return getBeanBuilder().build().parse();
     }
 
+    /**
+     * Vrací instanci čtečky, na které se můžou řetězit další příkazy.
+     */
     public CsvToBeanBuilder<T> getBeanBuilder() throws IOException {
         Reader reader = Files.newBufferedReader(Paths.get(this.file));
         return new CsvToBeanBuilder(reader)
@@ -41,3 +55,4 @@ public class CsvReader<T> {
                 .withType(this.genericType);
     }
 }
+

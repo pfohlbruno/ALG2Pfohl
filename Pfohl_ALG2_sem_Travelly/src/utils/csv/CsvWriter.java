@@ -19,15 +19,22 @@ import java.util.List;
 public class CsvWriter<T> {
     private String file;
     private char separator = ';';
-    private  Class<T> genericType;
 
-    public CsvWriter(final Class<T> type, String file) {
-        this.genericType = type;
+    /**
+     * Konstruktor pro vytvoření instance writeru.
+     * @param file Soubor, se kterým writer pracuje.
+     */
+    public CsvWriter(String file) {
         this.file = file;
     }
 
-    public CsvWriter(final Class<T> type, String file, char separator) {
-        this(type, file);
+    /**
+     * Konstruktor pro vytvoření instance writeru se zvláštním separačním znakem.
+     * @param file Soubor, se kterým reader pracuje.
+     * @param separator Separační znak oddělující jednotlivá pole.
+     */
+    public CsvWriter(String file, char separator) {
+        this(file);
         this.separator = separator;
     }
 
@@ -36,14 +43,19 @@ public class CsvWriter<T> {
      * @param beans Objekty, jednotlivé řádky souboru, které se mají zapsat do souboru.
      */
     public void writeAll(List<T> beans) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+        // Vytvořím instanci writeru.
         Writer writer = Files.newBufferedWriter(Paths.get(this.file));
+
+        // Vytvořím instanci CSV writeru.
         StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder(writer)
                 .withSeparator(this.separator)
                 .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                 .build();
 
+        // Zapíšu změny.
         beanToCsv.write(beans);
 
+        // Uzavřu writer (v tomto bodě se data uloží).
         writer.close();
     }
 }
