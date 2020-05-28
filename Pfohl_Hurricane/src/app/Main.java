@@ -2,12 +2,14 @@ package app;
 
 import code.Hurricane;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Úkol dodělám. Omlouvám se, že to není včas...
@@ -19,35 +21,55 @@ public class Main {
 
         try {
             hurricanes = readHurricaneData("hurricanedata.txt");
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.print("Zadejte počáteční rok: ");
+            
+            int from = Integer.parseInt(sc.nextLine());
+            System.out.print("Zadejte koncový rok: ");
+            int to = Integer.parseInt(sc.nextLine());
+            printDataFromPeriod(hurricanes, from, to);
+
+
+            System.out.print("Zadejte název hurikánu: ");
+            String name = sc.nextLine();
+            printInfoByName(hurricanes, name);
+
+            System.out.println();
+
+            printSorted(hurricanes);
+
+
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
 
-        Scanner sc = new Scanner(System.in);
-        printMenu();
+    private static void printDataFromPeriod(List<Hurricane> hurricanes, int from, int to) {
+        List<Hurricane> filtered = hurricanes.stream()
+            .filter(h -> h.getYear() >= from && h.getYear() <= to)
+            .collect(Collectors.toList());
 
-        int option = sc.nextInt();
-
-        switch (option) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                System.out.println("Volba nerozeznána");
-                printMenu();
-                break;
+        for (Hurricane hurricane : filtered) {
+            System.out.println(hurricane.toString());
         }
     }
 
-    private static void printDataFromPeriod(Scanner sc) {
-        int from = sc.nextInt();
-        int to = sc.nextInt();
+    private static void printInfoByName(List<Hurricane> hurricanes, String name) {
+        for (Hurricane hurricane : hurricanes) {
+            if (hurricane.getName().contains(name)) {
+                System.out.format("Název: %s; Rychlost %d km/h; Kategorie: %d %n", hurricane.getName(), hurricane.getSpeed(), hurricane.getCategory());
+            }
+        }
+    }
 
-
+    private static void printSorted(List<Hurricane> hurricanes) {
+        Collections.sort(hurricanes);
+        for (Hurricane hurricane : hurricanes) {
+            System.out.println(hurricane.toString());
+        }
     }
 
     private static ArrayList<Hurricane> readHurricaneData(String path) throws FileNotFoundException, IOException {
@@ -67,13 +89,5 @@ public class Main {
         }
 
         return hurricanes;
-    }
-
-    private static void printMenu() {
-        System.out.println(
-                "1) Vypište informace o všech hurikánech v období zadaném uživatelem. (od roku .. do roku)\n" +
-                "2) Vypište kategorii a rychlost v km/h hurikánu zadaného jménem od uživatele\n" +
-                "3) Vypište informace o hurikánech setříděných podle rychlosti"
-        );
     }
 }

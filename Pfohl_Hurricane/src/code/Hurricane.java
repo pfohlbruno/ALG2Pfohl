@@ -1,6 +1,6 @@
 package code;
 
-public class Hurricane {
+public class Hurricane implements Comparable{
     private int year;
     private String month;
     private int pressure;
@@ -61,5 +61,21 @@ public class Hurricane {
         }
 
         return category;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getSpeed() - ((Hurricane)o).getSpeed();
+    }
+
+    @Override
+    public String toString() {
+        return "Hurricane{" +
+                "year=" + year +
+                ", month='" + month + '\'' +
+                ", pressure=" + pressure +
+                ", speed=" + speed +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
