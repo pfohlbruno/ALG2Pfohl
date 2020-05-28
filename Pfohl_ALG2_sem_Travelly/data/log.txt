@@ -1,2 +1,4 @@
 2020-05-28T12:31:02.135 Rezervace na Zájezd - XRP holiday resort - bez stravy byla vytvořena.
 2020-05-28T12:31:05.719 Rezervace na Zájezd - Roadside corn holiday resort - bez stravy byla zrušena.
+2020-05-28T12:37:39.084 Rezervace na Zájezd - XRP holiday resort - polpenze byla vytvořena.
+2020-05-28T12:37:42.177 Rezervace na Zájezd - XRP holiday resort - polpenze byla zrušena.

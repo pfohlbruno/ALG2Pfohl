@@ -23,11 +23,8 @@ public class DataProvider {
 
     /**
      * Inicializuje objekt. Vytvoří všechny providery a uloží si je do privátních proměnných.
-     * @throws IOException
      */
     private void init() throws IOException {
-        // TODO: šlo by udělat kolekci providerů a do té jednotlivé providery registrovat.
-        //  Pak by se získávaly z kolekce podle typu objektu.
         this.bookingProvider = new BookingProvider();
         this.hotelProvider = new HotelProvider();
         this.offerProvider = new OfferProvider();

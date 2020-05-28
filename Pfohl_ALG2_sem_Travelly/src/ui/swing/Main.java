@@ -101,7 +101,10 @@ public class Main extends JFrame{
 
                 String message = String.format("Rezervace na %s byla vytvořena.", offer.getName());
 
+                // Zobrazím zprávu uživatelovi.
                 showMessageDialog(message);
+
+                // Přidám zprávu do logu (textového i binárního).
                 TextWriter.write(LocalDateTime.now(), message);
                 BinaryWriter.write(LocalDateTime.now(), message);
             } catch (Exception ex) {
@@ -124,7 +127,10 @@ public class Main extends JFrame{
 
                 String message = String.format("Rezervace na %s byla zrušena.", booking.getOfferName());
 
+                // Zobrazím zprávu uživatelovi.
                 showMessageDialog(message);
+
+                // Přidám zprávu do logu (textového i binárního).
                 TextWriter.write(LocalDateTime.now(), message);
                 BinaryWriter.write(LocalDateTime.now(), message);
             } catch (Exception ex) {
@@ -132,6 +138,7 @@ public class Main extends JFrame{
             }
         };
 
+        // "Nabinduju" tlačítko pro zrušení rezervace.
         this.btnCancelBooking.addActionListener(cancelBookingListener);
 
         this.pack();

@@ -216,3 +216,7 @@ Pfohl_Competition/out/production/Pfohl_Competition/utils/CompetitionBinaryReader
 Pfohl_Competition/out/production/Pfohl_Competition/utils/TextWriterBase.class
 Pfohl_Competition/out/production/Pfohl_Competition/utils/WriterBase.class
 Pfohl_Cmd/diagram.uml
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/DataProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/BookingProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/HotelProvider.class
+Pfohl_ALG2_sem_Travelly/out/production/Pfohl_ALG2_sem_Travelly/app/data/providers/OfferProvider.class

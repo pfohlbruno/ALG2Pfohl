@@ -74,8 +74,4 @@ public class Hotel extends EntityBase {
     public String getImgPath() {
         return "data\\imgs\\hotels\\" +  this.imgPath;
     }
-
-    public List<Offer> getOffers(OfferProvider offerProvider) {
-        return offerProvider.getOffersForHotelId(this.id);
-    }
 }

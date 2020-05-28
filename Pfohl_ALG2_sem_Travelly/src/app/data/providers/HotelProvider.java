@@ -18,15 +18,6 @@ public class HotelProvider extends ProviderBase<Hotel>{
 
     @Override
     public String getSourcePath() {
-        return "C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\hotels.csv";
-    }
-
-    public List<Hotel> withMoreStarsThan(int stars) {
-        return this.data
-                .stream()
-                .filter(o -> o.getStars() > stars)
-                .collect(Collectors
-                    .toCollection(ArrayList::new)
-                );
+        return "data\\hotels.csv";
     }
 }

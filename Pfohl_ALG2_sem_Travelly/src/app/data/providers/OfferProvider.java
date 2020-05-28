@@ -17,7 +17,7 @@ public class OfferProvider extends ProviderBase<Offer>{
 
     @Override
     public String getSourcePath() {
-        return "C:\\Users\\lenovo\\Documents\\GitHub\\ALG2Pfohl\\Pfohl_ALG2_sem_Travelly\\data\\offers.csv";
+        return "data\\offers.csv";
     }
 
     /**

@@ -2,6 +2,10 @@ package app.entities;
 
 import com.opencsv.bean.CsvBindByName;
 
+/**
+ * Třída reprezentující rezervaci na zájezd (1 řádek csv souboru bookings.csv).
+ * @author Bruno Pfohl
+ */
 public class Booking extends EntityBase{
     @CsvBindByName
     private String offerId;
@@ -26,10 +30,10 @@ public class Booking extends EntityBase{
     }
 
     public String getOfferId() {
-        return offerId;
+        return this.offerId;
     }
 
     public int getPersonCount() {
-        return personCount;
+        return this.personCount;
     }
 }
