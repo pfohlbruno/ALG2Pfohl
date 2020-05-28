@@ -19,4 +19,3 @@ public class ServiceTypeEnumConverter extends AbstractBeanField<ServiceTypeEnum,
         }
     }
 }
-

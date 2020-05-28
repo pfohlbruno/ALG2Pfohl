@@ -33,7 +33,7 @@ public abstract class ProviderBase<T extends EntityBase> implements IProvider<T>
      * Uloží data z provideru do příslušného CSV souboru (kompletně přepíše celý CSV soubor!).
      */
     public void save() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
-        new CsvWriter<T>(this.genericType, getSourcePath()).writeAll(this.data);
+        new CsvWriter<T>(getSourcePath()).writeAll(this.data);
     }
 
     /**

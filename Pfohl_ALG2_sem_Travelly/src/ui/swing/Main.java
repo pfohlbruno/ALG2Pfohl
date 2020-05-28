@@ -11,11 +11,14 @@ import ui.renderers.jcombobox.OrderItemListCellRenderer;
 import ui.renderers.jlist.BookingRenderer;
 import ui.renderers.jlist.HotelRenderer;
 import ui.renderers.jlist.OfferRenderer;
+import utils.BinaryWriter;
+import utils.TextWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class Main extends JFrame{
     // Rozměry okna.
@@ -96,7 +99,11 @@ public class Main extends JFrame{
 
                 this.appModel.createBooking(offer);
 
-                showMessageDialog("Rezervace byla vytvořena.");
+                String message = String.format("Rezervace na %s byla vytvořena.", offer.getName());
+
+                showMessageDialog(message);
+                TextWriter.write(LocalDateTime.now(), message);
+                BinaryWriter.write(LocalDateTime.now(), message);
             } catch (Exception ex) {
                 showMessageDialog(ex.getMessage());
             }
@@ -114,7 +121,12 @@ public class Main extends JFrame{
                 }
 
                 this.appModel.cancelBooking(booking);
-                showMessageDialog("Rezervace byla zrušena.");
+
+                String message = String.format("Rezervace na %s byla zrušena.", booking.getOfferName());
+
+                showMessageDialog(message);
+                TextWriter.write(LocalDateTime.now(), message);
+                BinaryWriter.write(LocalDateTime.now(), message);
             } catch (Exception ex) {
                 showMessageDialog(ex.getMessage());
             }
