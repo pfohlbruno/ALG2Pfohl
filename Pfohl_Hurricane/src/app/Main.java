@@ -25,18 +25,21 @@ public class Main {
             Scanner sc = new Scanner(System.in);
 
             System.out.print("Zadejte počáteční rok: ");
-            
+
             int from = Integer.parseInt(sc.nextLine());
             System.out.print("Zadejte koncový rok: ");
             int to = Integer.parseInt(sc.nextLine());
             printDataFromPeriod(hurricanes, from, to);
 
+            System.out.println("Pokračujte stisknutím klávesy enter");
+            sc.nextLine();
 
             System.out.print("Zadejte název hurikánu: ");
             String name = sc.nextLine();
             printInfoByName(hurricanes, name);
 
-            System.out.println();
+            System.out.println("Pokračujte stisknutím klávesy enter");
+            sc.nextLine();
 
             printSorted(hurricanes);
 
@@ -58,10 +61,17 @@ public class Main {
     }
 
     private static void printInfoByName(List<Hurricane> hurricanes, String name) {
+        boolean found = false;
+
         for (Hurricane hurricane : hurricanes) {
             if (hurricane.getName().contains(name)) {
-                System.out.format("Název: %s; Rychlost %d km/h; Kategorie: %d %n", hurricane.getName(), hurricane.getSpeed(), hurricane.getCategory());
+                found = true;
+                System.out.format("Název: %s; Rychlost %d km/h; Kategorie: %d %n", hurricane.getName(), hurricane.getSpeedInKmH(), hurricane.getCategory());
             }
+        }
+
+        if (!found) {
+            System.out.println("Hurikán se jménem " + name + " nebyl nalezen.");
         }
     }
 
