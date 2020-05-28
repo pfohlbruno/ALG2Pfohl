@@ -20,11 +20,14 @@ public class Dir extends Command {
             files = actualDir.listFiles();
         }
         else if(this.params.length == 2) {
-            // Pokud se jedná o "-o" parametr
-            if (this.params[1].equals("-o")) {
-                // Seřadím výstup.
-                files = actualDir.listFiles();
-                Arrays.sort(files);
+            String switcher = this.params[1];
+            files = actualDir.listFiles();
+            switch(switcher) {
+                case "-o":
+                    Arrays.sort(files);
+                    break;
+                case "-r":
+                    return dirR(actualDir, "-");
             }
         }
         else if (this.params.length == 3) {
@@ -55,8 +58,20 @@ public class Dir extends Command {
         return
                 String.format("%-7s %s %n", "dir", "Display a list of files and folder") +
                 String.format("%-7s %s %n", "dir [-o]", "Display an ordered list of files and folders") +
+                String.format("%-7s %s %n", "dir [-r]", "Display list of files and folders and all subfiles and subfolders") +
                 String.format("%-7s %s %n", "dir [-e] [file extension]", "Display a list of files and folders with a specified extension") +
                 String.format("%-7s %s %n", "dir [-s] [size]", "Display a list of files and folders bigger than a specified size");
+    }
+
+    public String dirR(File location, String level){
+        StringBuilder strBuilder = new StringBuilder("");
+        for (File f : location.listFiles()) {
+            strBuilder.append(level + " " + f.getName() + "\n");
+            if(f.isDirectory()){
+                strBuilder.append(dirR(new File(f.getParent() + File.separator + f.getName()),level + "-"));
+            }
+        }
+        return strBuilder.toString();
     }
 
     private String dirToString(File[] files) {

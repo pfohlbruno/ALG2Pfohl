@@ -15,7 +15,8 @@ public class Cd extends Command {
             String folderName = this.params[1];
 
             if (folderName.equals("..")) {
-                actualDir = actualDir.getParentFile();
+                cmd.changeDirectory(actualDir.getParentFile());
+                return "";
             }
             else {
                 File changedDir = new File(actualDir.getAbsolutePath(), folderName);
