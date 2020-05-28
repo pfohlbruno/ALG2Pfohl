@@ -90,7 +90,7 @@ public class Runner implements Comparable<Runner>{
      * @return zformátovaný čas, kdy běžec vyběhl
      */
     public String getStartTimeString(){
-        return this.startTime.format(this.formatterStart);
+        return this.startTime != null ? this.startTime.format(this.formatterStart) : "neznámý";
     }
 
     /**
@@ -98,7 +98,7 @@ public class Runner implements Comparable<Runner>{
      * @return zformátovaný čas, kdy běžec doběhl
      */
     public String getFinishTimeString(){
-        return this.finishTime.format(this.formatterStart);
+        return this.finishTime  != null ? this.finishTime.format(this.formatterStart) : "neznámý";
     }
 
     /**

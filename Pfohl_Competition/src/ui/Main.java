@@ -35,6 +35,7 @@ public class Main {
             c.saveResults(resultFile);
             System.out.println("Výsledky soutěže byly uloženy.");
         } catch(IOException e){
+            e.printStackTrace();
             System.out.println("Chyba pri čtení či zápisu");
         }
     }

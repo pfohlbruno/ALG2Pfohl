@@ -14,7 +14,7 @@ public class CompetitionBinaryReader {
     public static void main(String[] args) {
         try {
             // Načtu výsledkovou listinu ze souboru (seznam závodníků a jejich časů).
-            List<Runner> runners = getRunners("result.dat");
+            List<Runner> runners = getRunners("data/result.dat");
 
             // Vypíšu výsledky do konzole.
             for (Runner runner : runners) {

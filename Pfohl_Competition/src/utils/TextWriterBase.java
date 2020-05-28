@@ -17,8 +17,8 @@ public class TextWriterBase extends WriterBase {
             pw.println("Nové výsledky");
 
             // Zapíšu závodníky jednoho po druhém do souboru.
-            for (int i = 1; i <= runners.size(); i++) {
-                pw.print(i + ". ");
+            for (int i = 0; i < runners.size(); i++) {
+                pw.print((i+1) + ". ");
                 pw.println(runners.get(i).toString());
             }
         }
