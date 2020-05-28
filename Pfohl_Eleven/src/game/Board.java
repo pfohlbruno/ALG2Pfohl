@@ -3,6 +3,10 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Hrací "deska"
+ * @author Bruno Pfohl
+ */
 public class Board implements BoardInterface{
     private Card[] cards;
     private Deck deck;

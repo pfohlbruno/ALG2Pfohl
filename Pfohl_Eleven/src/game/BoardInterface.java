@@ -1,9 +1,8 @@
 package game;
 
 /**
- * Interface between the card game and the UI
- * Defines requested functionality from the game
- * @author janvit
+ * Rozhraní pro uživatelské rozhraní.
+ * @author Bruno Pfohl
  */
 public interface BoardInterface {
     /**

@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Třída reprezentující balíček karet.
- * @author janvit
+ * @author Bruno Pfohl
  */
 public class Deck {
     // Nemusí se měnit v průběhu hry, stav balíčku může být reprezentován počtem zbývajících karet.

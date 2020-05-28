@@ -6,8 +6,8 @@ import game.BoardInterface;
 import java.util.Scanner;
 
 /**
- * UI for card games e.g. Eleven game
- * @author janvit
+ * Uživatelské rozhraní hry.
+ * @author Bruno Pfohl
  */
 public class ConsoleUI {
     public static Scanner sc = new Scanner(System.in);

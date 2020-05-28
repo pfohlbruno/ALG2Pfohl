@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Třída obsahující informace o kartách (hodnoty, symboly, ...).
- * @author janvit
+ * @author Bruno Pfohl
  */
 public class DataStore {
     private static String[] values
