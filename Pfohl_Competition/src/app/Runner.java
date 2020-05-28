@@ -13,6 +13,7 @@ public class Runner implements Comparable<Runner>{
     private String lastname;
     private LocalTime startTime;
     private LocalTime finishTime;
+    private LocalTime explicitRunningTime;
     public static DateTimeFormatter formatterStart = DateTimeFormatter.ofPattern("HH:mm:ss");
     public static DateTimeFormatter formatterFinish = DateTimeFormatter.ofPattern("HH:mm:ss:SSS");
 
@@ -117,22 +118,36 @@ public class Runner implements Comparable<Runner>{
     }
 
     /**
-     * Vrací celkový čas běhu.
+     * Vrací celkový čas běhu (vypočítaný).
      * @return celkový čas běhu jako LocalTime
      */
-    public LocalTime runningTime(){
-        return LocalTime.ofNanoOfDay(this.finishTime.toNanoOfDay() - this.startTime.toNanoOfDay());
+    public LocalTime computedRunningTime(){
+        return this.explicitRunningTime != null ? this.explicitRunningTime : LocalTime.ofNanoOfDay(this.finishTime.toNanoOfDay() - this.startTime.toNanoOfDay());
+    }
+
+    /**
+     * Vrací celkový čas běhu (explicitní).
+     */
+    public LocalTime getExplicitRunningTime() {
+        return this.explicitRunningTime;
+    }
+
+    /**
+     * Nastaví explicitně celkový čas běhu.
+     */
+    public void setExplicitRunningTime(LocalTime explicitRunningTime) {
+        this.explicitRunningTime = explicitRunningTime;
     }
 
     @Override
     public String toString() {
         return String.format("%-4d%-10s%-10s%-15s%-15s%-15s", this.number, this.firstname, this.lastname, getStartTimeString(),
-                getFinishTimeString(),  runningTime().format(formatterFinish));
+                getFinishTimeString(),  computedRunningTime().format(formatterFinish));
     }
 
     @Override
     public int compareTo(Runner r) {
-        return this.runningTime().compareTo(r.runningTime());
+        return this.computedRunningTime().compareTo(r.computedRunningTime());
     }
 
 

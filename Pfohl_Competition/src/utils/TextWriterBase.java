@@ -1,4 +1,4 @@
-package filehandling;
+package utils;
 
 import app.Runner;
 
@@ -13,13 +13,13 @@ public class TextWriterBase extends WriterBase {
     @Override
     public void saveResults(String resultFilepath, List<Runner> runners) throws IOException {
         File resultFile = new File(dataDirectory, resultFilepath);
-        try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(resultFile, true)))) {
-            pw.println("Nove vysledky");
-            int n = 1;
-            for (Runner runner : runners) {
-                pw.print(n + ". ");
-                pw.println(runner.toString());
-                n++;
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(resultFile, true))) { // append mode (přidává)
+            pw.println("Nové výsledky");
+
+            // Zapíšu závodníky jednoho po druhém do souboru.
+            for (int i = 1; i <= runners.size(); i++) {
+                pw.print(i + ". ");
+                pw.println(runners.get(i).toString());
             }
         }
     }

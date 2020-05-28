@@ -2,6 +2,8 @@ package ui;
 
 import app.Competition;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -13,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         Competition c = new Competition();
-        System.out.println("Zadejte názvy vstupních souborů");
+        System.out.println("Zadejte názvy vstupních souborů: ");
         try{
             while(true){
                 try {
@@ -21,18 +23,19 @@ public class Main {
                     String finishFile = sc.next();
                     c.load(startFile, finishFile);
                     break;
-                }catch(FileNotFoundException e){
-                    System.out.println("Zadany neexistujici subor. Zadej znovu.");
-                    //e.printStackTrace(); vhodné pro debuggování
+                } catch(FileNotFoundException e){
+                    System.out.println("Vstupní soubor neexistuje. Zadej znovu.");
+                } catch (Exception e) {
+                   System.out.println(e.getMessage());
                 }
             }
             System.out.println(c.getResults());
-            System.out.println("Zadej nazev vystupniho souboru");
+            System.out.println("Zadej název výstupního souboru: ");
             String resultFile = sc.next();
             c.saveResults(resultFile);
-            System.out.println("Data byla ulozena");
-        }catch(IOException e){
-            System.out.println("Chyba pri cteni a zapisu");
+            System.out.println("Výsledky soutěže byly uloženy.");
+        } catch(IOException e){
+            System.out.println("Chyba pri čtení či zápisu");
         }
     }
 }

@@ -1,8 +1,8 @@
 package app;
 
-import filehandling.BinaryWriterBase;
-import filehandling.TextWriterBase;
-import filehandling.WriterBase;
+import utils.BinaryWriterBase;
+import utils.TextWriterBase;
+import utils.WriterBase;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,14 +17,19 @@ import java.util.Scanner;
 public class Competition {
     private ArrayList<Runner> runners = new ArrayList<>();
 
+    /**
+     * Načte seznam závodníků ze souboru do kolekce.
+     * @param startFilepath Cesta k souboru startu
+     * @param finishFilepath Cesta k souboru cíle
+     */
     public void load(String startFilepath, String finishFilepath) throws FileNotFoundException, IOException, Exception {
+        // Název start souboru musí obsahovat "start", jinak program vyhodí výjimku
         if(!startFilepath.contains("start")){
             throw new Exception("Start soubor musí obsahovat start.");
         }
 
         // Ze souboru načítám pomocí Scanneru.
-        File startFile = new File(startFilepath);
-        try (Scanner inStart = new Scanner(startFile)) {
+        try (Scanner inStart = new Scanner(new File(startFilepath))) {
             // Dokud je co číst...
             while (inStart.hasNext()) {
                 int number = inStart.nextInt(); // Přečtu číslo běžce
@@ -43,44 +48,63 @@ public class Competition {
             }
         }
 
-        // Cílové časy pro změnu načítám pomocí BufferedReaderu.
-        File finishFile = new File(finishFilepath);
+        // Soubor cíle pro změnu načítám pomocí BufferedReaderu.
         BufferedReader inFinish = null;
         try {
-            inFinish = new BufferedReader(new FileReader(finishFile));
+            // Vytvořím si BufferedReader pro čtení ze souboru.
+            inFinish = new BufferedReader(new FileReader(new File(finishFilepath)));
             String line;
-            while ((line = inFinish.readLine()) != null) { //102 10:02:00:000
+            // Postupně načítám řádky, dokud je co načítat.
+            while ((line = inFinish.readLine()) != null) {
+                // Od každé řádky očekávám, že bude vypadat takto "cislo cas" (100 09:11:01:024)
+
+                // Rozdělím pomocí libovolně dlouhých mezer.
                 String[] parts = line.split("[ ]+");
-                try { //ošetření výjimky odchycenim
+
+                // Pokusím se v kolekci běžců nalézt bežce a nastavit mu konečný čas.
+                try {
                     Runner r = findRunner(Integer.parseInt(parts[0]));
                     r.setFinishTime(parts[1]);
                 } catch (NoSuchElementException e) {
-                    System.err.print(e.getMessage()); //neexistujici bezec se preskoci
+                    System.err.print(e.getMessage()); // Neexistujici běžec se přeskočí (do err výstupu se vypíše chyba).
                 }
             }
         }finally{
+            // Po načtení "uzavřu" soubor.
             if(inFinish != null) inFinish.close();
         }
     }
 
+    /**
+     * Vrací závodníka s daným startovním číslem.
+     * @param number startovní číslo závodníka
+     * @return Závodník
+     */
     private Runner findRunner(int number) {
-        for (Runner runner : runners) {
+        for (Runner runner : this.runners) {
             if (runner.getNumber() == number) {
                 return runner;
             }
         }
-        throw new NoSuchElementException("Bezec s cislem " + number + " nebyl na startu."); //vyhozeni výjimky
+
+        // Pokud běžeč není v seznamu běžců na startu, vyhodím výjimku.
+        throw new NoSuchElementException("Běžeč s číslem " + number + " nebyl na startu.");
     }
 
+    /**
+     * Vrací zformátovaný výstup této třídy (seznam běžců s jejich časy seřazený dle celkového času).
+     * @return
+     */
     public String getResults() {
         // Setřídím běžce.
-        Collections.sort(runners);
+        Collections.sort(this.runners);
         StringBuilder sb = new StringBuilder("");
         int n = 1;
-        for (Runner runner : runners) {
+        for (Runner runner : this.runners) {
             sb.append(String.format("%-2d. %s%n", n, runner));
             n++;
         }
+
         return sb.toString();
     }
 
@@ -89,18 +113,20 @@ public class Competition {
      * @param resultFilepath cesta k cílovému souboru na disku
      */
     public void saveResults(String resultFilepath) throws IOException {
-        // Setřídím běžce.
+        // Před uložením běžce setřídím.
         Collections.sort(this.runners);
-        WriterBase w = null;
 
         // Vytvořím instanci writeru dle toho, jestli se jedná o textový nebo binární soubor.
+        WriterBase w = null;
         if (resultFilepath.endsWith(".txt")) {
             w = new TextWriterBase();
         } else if (resultFilepath.endsWith(".dat")) {
             w = new BinaryWriterBase();
         } else {
-            throw new IllegalArgumentException("Nepodporovana pripona souboru");
+            throw new IllegalArgumentException("Typ výstupního není podporován.");
         }
+
+        // Uložím výsledky soutěže do souboru (zapíšu).
         w.saveResults(resultFilepath, this.runners);
     }
 }
